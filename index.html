@@ -8,7 +8,8 @@
 
   <style>
     /* =========================================================
-       NOVA & CO.- Designed By Ayo & Mary Akano
+       NOVA & CO. — Enhanced, editable version
+       Designed for easy insertion into Google Sites
     ========================================================= */
 
     :root {
@@ -48,10 +49,7 @@
       overflow-x: hidden;
     }
 
-    button,
-    input,
-    select,
-    textarea {
+    button, input, select, textarea {
       font: inherit;
     }
 
@@ -109,10 +107,7 @@
       background: currentColor;
     }
 
-    h1,
-    h2,
-    h3,
-    .serif {
+    h1, h2, h3, .serif {
       font-family: Georgia, "Times New Roman", serif;
       font-weight: 400;
     }
@@ -280,12 +275,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(0,0,0,.1),
-        transparent 55%,
-        rgba(0,0,0,.3)
-      );
+      background: linear-gradient(180deg, rgba(0,0,0,.1), transparent 55%, rgba(0,0,0,.3));
       pointer-events: none;
     }
 
@@ -444,10 +434,7 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      background: linear-gradient(
-        transparent 35%,
-        rgba(0,0,0,.68)
-      );
+      background: linear-gradient(transparent 35%, rgba(0,0,0,.68));
     }
 
     .category-number {
@@ -1294,7 +1281,6 @@
     ========================================================= */
 
     @media (max-width: 1100px) {
-
       .product-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -1318,7 +1304,6 @@
     ========================================================= */
 
     @media (max-width: 850px) {
-
       .nav-links {
         display: none;
       }
@@ -1363,7 +1348,6 @@
     ========================================================= */
 
     @media (max-width: 650px) {
-
       .nova-container {
         width: calc(100% - 24px);
       }
@@ -1511,7 +1495,6 @@
     }
 
     @media (max-width: 380px) {
-
       .product-grid {
         grid-template-columns: 1fr;
       }
@@ -2215,6 +2198,9 @@
     /* =========================================================
        STORE DATA
        EDIT PRODUCTS HERE
+       ---------------------------------------------------------
+       To add a new product, copy an object block, change the
+       values, and increment the id.
     ========================================================= */
 
     const STORE = {
@@ -2317,6 +2303,54 @@
             "A compact leather card holder designed for the essentials without unnecessary bulk.",
           image:
             "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+          id: 9,
+          name: "Wool Blend Scarf",
+          price: 52,
+          category: "Clothing",
+          badge: "Limited",
+          description:
+            "A soft wool-blend scarf with a subtle texture and generous length for cold-weather layering.",
+          image:
+            "https://images.unsplash.com/photo-1601924994987-69e26d50dc26?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+          id: 10,
+          name: "Minimal Desk Lamp",
+          price: 88,
+          category: "Lifestyle",
+          badge: "",
+          description:
+            "A clean-lined desk lamp with warm LED lighting and a matte finish for focused work sessions.",
+          image:
+            "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+          id: 11,
+          name: "Canvas Weekender",
+          price: 120,
+          category: "Accessories",
+          badge: "New",
+          description:
+            "A durable canvas weekender with leather trim and ample space for short trips and gym runs.",
+          image:
+            "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?auto=format&fit=crop&w=1000&q=85"
+        },
+
+        {
+          id: 12,
+          name: "Pima Cotton Crew",
+          price: 44,
+          category: "Clothing",
+          badge: "",
+          description:
+            "A premium pima cotton crewneck with a smooth hand feel and clean, everyday fit.",
+          image:
+            "https://images.unsplash.com/photo-1576566588028-4147f3842f27?auto=format&fit=crop&w=1000&q=85"
         }
 
       ]
@@ -2337,47 +2371,20 @@
        DOM
     ========================================================= */
 
-    const productGrid =
-      document.getElementById("productGrid");
-
-    const searchInput =
-      document.getElementById("searchInput");
-
-    const categoryFilter =
-      document.getElementById("categoryFilter");
-
-    const cartButton =
-      document.getElementById("cartButton");
-
-    const cartDrawer =
-      document.getElementById("cartDrawer");
-
-    const closeCart =
-      document.getElementById("closeCart");
-
-    const overlay =
-      document.getElementById("overlay");
-
-    const cartItems =
-      document.getElementById("cartItems");
-
-    const cartCount =
-      document.getElementById("cartCount");
-
-    const cartSubtotal =
-      document.getElementById("cartSubtotal");
-
-    const checkoutButton =
-      document.getElementById("checkoutButton");
-
-    const productModal =
-      document.getElementById("productModal");
-
-    const checkoutModal =
-      document.getElementById("checkoutModal");
-
-    const successModal =
-      document.getElementById("successModal");
+    const productGrid = document.getElementById("productGrid");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const cartButton = document.getElementById("cartButton");
+    const cartDrawer = document.getElementById("cartDrawer");
+    const closeCart = document.getElementById("closeCart");
+    const overlay = document.getElementById("overlay");
+    const cartItems = document.getElementById("cartItems");
+    const cartCount = document.getElementById("cartCount");
+    const cartSubtotal = document.getElementById("cartSubtotal");
+    const checkoutButton = document.getElementById("checkoutButton");
+    const productModal = document.getElementById("productModal");
+    const checkoutModal = document.getElementById("checkoutModal");
+    const successModal = document.getElementById("successModal");
 
 
     /* =========================================================
@@ -2388,16 +2395,13 @@
       return STORE.currency + value.toFixed(2);
     }
 
-
     function escapeHtml(value) {
-
       return String(value)
         .replaceAll("&", "&amp;")
         .replaceAll("<", "&lt;")
         .replaceAll(">", "&gt;")
         .replaceAll('"', "&quot;")
         .replaceAll("'", "&#039;");
-
     }
 
 
@@ -2408,9 +2412,7 @@
     function renderProducts() {
 
       const query =
-        searchInput.value
-          .trim()
-          .toLowerCase();
+        searchInput.value.trim().toLowerCase();
 
       const category =
         categoryFilter.value;
@@ -2419,21 +2421,16 @@
         STORE.products.filter(product => {
 
           const matchesSearch =
-            product.name
-              .toLowerCase()
-              .includes(query) ||
-            product.category
-              .toLowerCase()
-              .includes(query);
+            product.name.toLowerCase().includes(query) ||
+            product.category.toLowerCase().includes(query) ||
+            (product.badge && product.badge.toLowerCase().includes(query));
 
           const matchesCategory =
-            category === "All" ||
-            product.category === category;
+            category === "All" || product.category === category;
 
           return matchesSearch && matchesCategory;
 
         });
-
 
       if (!filtered.length) {
 
@@ -2446,7 +2443,6 @@
 
         return;
       }
-
 
       productGrid.innerHTML =
         filtered.map(product => `
@@ -2545,18 +2541,12 @@
 
       if (!product) return;
 
-
       if (actionButton.dataset.action === "add") {
-
         addToCart(product.id);
-
       }
 
-
       if (actionButton.dataset.action === "quick-view") {
-
         openProductModal(product);
-
       }
 
     });
@@ -2572,11 +2562,8 @@
         cart.find(item => item.id === productId);
 
       if (existing) {
-
         existing.quantity += 1;
-
       } else {
-
         const product =
           STORE.products.find(item => item.id === productId);
 
@@ -2586,11 +2573,9 @@
           ...product,
           quantity: 1
         });
-
       }
 
       updateCart();
-
       openCart();
 
     }
@@ -2603,56 +2588,30 @@
     function updateCart() {
 
       const totalQuantity =
-        cart.reduce(
-          (sum, item) => sum + item.quantity,
-          0
-        );
+        cart.reduce((sum, item) => sum + item.quantity, 0);
 
       const subtotal =
-        cart.reduce(
-          (sum, item) =>
-            sum + item.price * item.quantity,
-          0
-        );
+        cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
-
-      cartCount.textContent =
-        totalQuantity;
-
-
-      cartSubtotal.textContent =
-        formatMoney(subtotal);
-
+      cartCount.textContent = totalQuantity;
+      cartSubtotal.textContent = formatMoney(subtotal);
 
       if (!cart.length) {
 
         cartItems.innerHTML = `
-
           <div class="empty-cart">
-
             <strong>Your cart is empty.</strong>
-
-            <p>
-              Add something beautiful to get started.
-            </p>
-
+            <p>Add something beautiful to get started.</p>
           </div>
-
         `;
 
         checkoutButton.disabled = true;
-
         checkoutButton.style.opacity = ".45";
-
         return;
-
       }
 
-
       checkoutButton.disabled = false;
-
       checkoutButton.style.opacity = "1";
-
 
       cartItems.innerHTML =
         cart.map(item => `
@@ -2660,12 +2619,10 @@
           <div class="cart-item">
 
             <div class="cart-item-image">
-
               <img
                 src="${item.image}"
                 alt="${escapeHtml(item.name)}"
               >
-
             </div>
 
             <div>
@@ -2736,35 +2693,20 @@
 
       if (!item) return;
 
-
       if (button.dataset.cartAction === "increase") {
-
         item.quantity++;
-
       }
-
 
       if (button.dataset.cartAction === "decrease") {
-
         item.quantity--;
-
         if (item.quantity <= 0) {
-
-          cart =
-            cart.filter(product => product.id !== id);
-
+          cart = cart.filter(product => product.id !== id);
         }
-
       }
-
 
       if (button.dataset.cartAction === "remove") {
-
-        cart =
-          cart.filter(product => product.id !== id);
-
+        cart = cart.filter(product => product.id !== id);
       }
-
 
       updateCart();
 
@@ -2776,17 +2718,12 @@
     ========================================================= */
 
     function openCart() {
-
       cartDrawer.classList.add("active");
       overlay.classList.add("active");
-
       document.body.style.overflow = "hidden";
-
     }
 
-
     function closeCartDrawer() {
-
       cartDrawer.classList.remove("active");
 
       if (
@@ -2794,25 +2731,13 @@
         !checkoutModal.classList.contains("active") &&
         !successModal.classList.contains("active")
       ) {
-
         overlay.classList.remove("active");
-
         document.body.style.overflow = "";
-
       }
-
     }
 
-
-    cartButton.addEventListener(
-      "click",
-      openCart
-    );
-
-    closeCart.addEventListener(
-      "click",
-      closeCartDrawer
-    );
+    cartButton.addEventListener("click", openCart);
+    closeCart.addEventListener("click", closeCartDrawer);
 
 
     /* =========================================================
@@ -2823,41 +2748,18 @@
 
       currentProduct = product;
 
-      document.getElementById(
-        "modalProductImage"
-      ).src = product.image;
-
-      document.getElementById(
-        "modalProductImage"
-      ).alt = product.name;
-
-      document.getElementById(
-        "modalProductCategory"
-      ).textContent = product.category;
-
-      document.getElementById(
-        "modalProductName"
-      ).textContent = product.name;
-
-      document.getElementById(
-        "modalProductPrice"
-      ).textContent =
-        formatMoney(product.price);
-
-      document.getElementById(
-        "modalProductDescription"
-      ).textContent =
-        product.description;
-
+      document.getElementById("modalProductImage").src = product.image;
+      document.getElementById("modalProductImage").alt = product.name;
+      document.getElementById("modalProductCategory").textContent = product.category;
+      document.getElementById("modalProductName").textContent = product.name;
+      document.getElementById("modalProductPrice").textContent = formatMoney(product.price);
+      document.getElementById("modalProductDescription").textContent = product.description;
 
       productModal.classList.add("active");
-
       overlay.classList.add("active");
-
       document.body.style.overflow = "hidden";
 
     }
-
 
     function closeProductModal() {
 
@@ -2868,35 +2770,19 @@
         !checkoutModal.classList.contains("active") &&
         !successModal.classList.contains("active")
       ) {
-
         overlay.classList.remove("active");
-
         document.body.style.overflow = "";
-
       }
 
     }
 
+    document.getElementById("closeProductModal").addEventListener("click", closeProductModal);
 
-    document
-      .getElementById("closeProductModal")
-      .addEventListener(
-        "click",
-        closeProductModal
-      );
-
-
-    document
-      .getElementById("modalAddButton")
-      .addEventListener("click", function() {
-
-        if (!currentProduct) return;
-
-        addToCart(currentProduct.id);
-
-        closeProductModal();
-
-      });
+    document.getElementById("modalAddButton").addEventListener("click", function() {
+      if (!currentProduct) return;
+      addToCart(currentProduct.id);
+      closeProductModal();
+    });
 
 
     /* =========================================================
@@ -2908,193 +2794,106 @@
       if (!cart.length) return;
 
       const quantity =
-        cart.reduce(
-          (sum, item) => sum + item.quantity,
-          0
-        );
+        cart.reduce((sum, item) => sum + item.quantity, 0);
 
       const subtotal =
-        cart.reduce(
-          (sum, item) =>
-            sum + item.price * item.quantity,
-          0
-        );
+        cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
       const shipping =
         subtotal >= 100 ? 0 : 10;
 
-      document.getElementById(
-        "checkoutItems"
-      ).textContent = quantity;
-
-      document.getElementById(
-        "checkoutShipping"
-      ).textContent = formatMoney(shipping);
-
-      document.getElementById(
-        "checkoutTotal"
-      ).textContent =
-        formatMoney(subtotal + shipping);
-
+      document.getElementById("checkoutItems").textContent = quantity;
+      document.getElementById("checkoutShipping").textContent = formatMoney(shipping);
+      document.getElementById("checkoutTotal").textContent = formatMoney(subtotal + shipping);
 
       cartDrawer.classList.remove("active");
-
       checkoutModal.classList.add("active");
-
       overlay.classList.add("active");
-
       document.body.style.overflow = "hidden";
 
     }
 
+    checkoutButton.addEventListener("click", openCheckout);
 
-    checkoutButton.addEventListener(
-      "click",
-      openCheckout
-    );
-
-
-    document
-      .getElementById("closeCheckout")
-      .addEventListener("click", function() {
-
-        checkoutModal.classList.remove("active");
-
-        if (!successModal.classList.contains("active")) {
-
-          overlay.classList.remove("active");
-
-          document.body.style.overflow = "";
-
-        }
-
-      });
+    document.getElementById("closeCheckout").addEventListener("click", function() {
+      checkoutModal.classList.remove("active");
+      if (!successModal.classList.contains("active")) {
+        overlay.classList.remove("active");
+        document.body.style.overflow = "";
+      }
+    });
 
 
     /* =========================================================
        PLACE ORDER
     ========================================================= */
 
-    document
-      .getElementById("checkoutForm")
-      .addEventListener("submit", function(event) {
+    document.getElementById("checkoutForm").addEventListener("submit", function(event) {
 
-        event.preventDefault();
+      event.preventDefault();
 
+      const orderNumber =
+        "NOVA-" + Math.floor(100000 + Math.random() * 900000);
 
-        const orderNumber =
-          "NOVA-" +
-          Math.floor(
-            100000 +
-            Math.random() * 900000
-          );
+      document.getElementById("orderNumber").textContent = orderNumber;
 
+      cart = [];
+      updateCart();
 
-        document.getElementById(
-          "orderNumber"
-        ).textContent = orderNumber;
+      checkoutModal.classList.remove("active");
+      successModal.classList.add("active");
+      overlay.classList.add("active");
+      document.body.style.overflow = "hidden";
 
+      this.reset();
 
-        cart = [];
-
-        updateCart();
-
-        checkoutModal.classList.remove("active");
-
-        successModal.classList.add("active");
-
-        overlay.classList.add("active");
-
-        document.body.style.overflow = "hidden";
-
-        this.reset();
-
-      });
+    });
 
 
     /* =========================================================
        SUCCESS
     ========================================================= */
 
-    document
-      .getElementById("closeSuccess")
-      .addEventListener("click", function() {
+    document.getElementById("closeSuccess").addEventListener("click", function() {
 
-        successModal.classList.remove("active");
+      successModal.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
 
-        overlay.classList.remove("active");
+      document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
 
-        document.body.style.overflow = "";
-
-        document
-          .getElementById("shop")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-      });
+    });
 
 
     /* =========================================================
        SEARCH
     ========================================================= */
 
-    searchInput.addEventListener(
-      "input",
-      renderProducts
-    );
-
-
-    categoryFilter.addEventListener(
-      "change",
-      renderProducts
-    );
+    searchInput.addEventListener("input", renderProducts);
+    categoryFilter.addEventListener("change", renderProducts);
 
 
     /* =========================================================
        SEARCH BUTTON
     ========================================================= */
 
-    document
-      .getElementById("searchButton")
-      .addEventListener("click", function() {
-
-        document
-          .getElementById("shop")
-          .scrollIntoView({
-            behavior: "smooth"
-          });
-
-        setTimeout(() => {
-
-          searchInput.focus();
-
-        }, 500);
-
-      });
+    document.getElementById("searchButton").addEventListener("click", function() {
+      document.getElementById("shop").scrollIntoView({ behavior: "smooth" });
+      setTimeout(() => { searchInput.focus(); }, 500);
+    });
 
 
     /* =========================================================
        CATEGORY LINKS
     ========================================================= */
 
-    document
-      .querySelectorAll("[data-category-link]")
-      .forEach(link => {
-
-        link.addEventListener("click", function() {
-
-          const category =
-            this.dataset.categoryLink;
-
-          categoryFilter.value =
-            category;
-
-          renderProducts();
-
-        });
-
+    document.querySelectorAll("[data-category-link]").forEach(link => {
+      link.addEventListener("click", function() {
+        const category = this.dataset.categoryLink;
+        categoryFilter.value = category;
+        renderProducts();
       });
+    });
 
 
     /* =========================================================
@@ -3102,19 +2901,12 @@
     ========================================================= */
 
     overlay.addEventListener("click", function() {
-
       cartDrawer.classList.remove("active");
-
       productModal.classList.remove("active");
-
       checkoutModal.classList.remove("active");
-
       successModal.classList.remove("active");
-
       overlay.classList.remove("active");
-
       document.body.style.overflow = "";
-
     });
 
 
@@ -3122,52 +2914,35 @@
        ESC KEY
     ========================================================= */
 
-    document.addEventListener(
-      "keydown",
-      function(event) {
+    document.addEventListener("keydown", function(event) {
+      if (event.key !== "Escape") return;
 
-        if (event.key !== "Escape") return;
-
-        cartDrawer.classList.remove("active");
-
-        productModal.classList.remove("active");
-
-        checkoutModal.classList.remove("active");
-
-        successModal.classList.remove("active");
-
-        overlay.classList.remove("active");
-
-        document.body.style.overflow = "";
-
-      }
-    );
+      cartDrawer.classList.remove("active");
+      productModal.classList.remove("active");
+      checkoutModal.classList.remove("active");
+      successModal.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.style.overflow = "";
+    });
 
 
     /* =========================================================
        NEWSLETTER
     ========================================================= */
 
-    document
-      .getElementById("newsletterForm")
-      .addEventListener("submit", function(event) {
+    document.getElementById("newsletterForm").addEventListener("submit", function(event) {
 
-        event.preventDefault();
+      event.preventDefault();
 
-        const email =
-          document.getElementById(
-            "newsletterEmail"
-          ).value.trim();
+      const email =
+        document.getElementById("newsletterEmail").value.trim();
 
-        if (!email) return;
+      if (!email) return;
 
-        alert(
-          "Thank you for subscribing to NOVA & CO. You'll receive 10% off your first order."
-        );
+      alert("Thank you for subscribing to NOVA & CO. You'll receive 10% off your first order.");
+      this.reset();
 
-        this.reset();
-
-      });
+    });
 
 
     /* =========================================================
@@ -3175,7 +2950,6 @@
     ========================================================= */
 
     renderProducts();
-
     updateCart();
 
   </script>
