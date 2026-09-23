@@ -1,0 +1,3481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NOVA & CO. — Everyday pieces, thoughtfully made.">
+  <meta name="theme-color" content="#171717">
+  <title>NOVA & CO. — Everyday, Upgraded.</title>
+
+  <style>
+    /* =========================================================
+       NOVA & CO.
+       ========================================================= */
+
+    :root {
+      --black: #171717;
+      --black-soft: #222222;
+      --cream: #f7f5f0;
+      --cream-dark: #ebe7de;
+      --white: #ffffff;
+      --muted: #77736c;
+      --border: #dedbd3;
+      --success: #2f6b4f;
+      --danger: #a63d40;
+      --shadow: 0 20px 60px rgba(0,0,0,.10);
+      --radius: 18px;
+      --max-width: 1440px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family:
+        Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body.locked {
+      overflow: hidden;
+    }
+
+    img {
+      display: block;
+      width: 100%;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    ::selection {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    /* =========================
+       GLOBAL
+       ========================= */
+
+    .container {
+      width: min(var(--max-width), calc(100% - 80px));
+      margin: 0 auto;
+    }
+
+    .section {
+      padding: 110px 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 18px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: currentColor;
+    }
+
+    .section-title {
+      max-width: 760px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5vw, 78px);
+      line-height: .98;
+      letter-spacing: -.045em;
+      font-weight: 500;
+    }
+
+    .section-copy {
+      max-width: 600px;
+      margin-top: 22px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .btn {
+      border: 1px solid var(--black);
+      background: var(--black);
+      color: var(--white);
+      min-height: 48px;
+      padding: 0 24px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: .25s ease;
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--black);
+      transform: translateY(-2px);
+    }
+
+    .btn.light {
+      background: var(--white);
+      color: var(--black);
+      border-color: var(--white);
+    }
+
+    .btn.light:hover {
+      background: transparent;
+      color: var(--white);
+    }
+
+    .btn.outline {
+      background: transparent;
+      color: var(--black);
+    }
+
+    .btn.outline:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    .icon-btn {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border);
+      background: transparent;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: .2s ease;
+    }
+
+    .icon-btn:hover {
+      background: var(--black);
+      color: var(--white);
+      border-color: var(--black);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* =========================
+       ANNOUNCEMENT
+       ========================= */
+
+    .announcement {
+      background: var(--black);
+      color: var(--white);
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 20px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* =========================
+       HEADER
+       ========================= */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(247,245,240,.92);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(23,23,23,.08);
+    }
+
+    .nav {
+      min-height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+    }
+
+    .brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      font-weight: 700;
+      letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 5px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: 1px;
+      background: var(--black);
+      transition: .25s;
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-button {
+      position: relative;
+      border: 1px solid var(--black);
+      background: var(--black);
+      color: white;
+      border-radius: 999px;
+      padding: 11px 17px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .cart-count {
+      min-width: 20px;
+      height: 20px;
+      padding: 0 5px;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      background: white;
+      color: var(--black);
+      border-radius: 50%;
+      font-size: 10px;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    /* =========================
+       HERO
+       ========================= */
+
+    .hero {
+      position: relative;
+      min-height: 720px;
+      display: flex;
+      align-items: flex-end;
+      background: var(--black);
+      color: var(--white);
+      overflow: hidden;
+    }
+
+    .hero-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: .58;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg,
+          rgba(0,0,0,.78) 0%,
+          rgba(0,0,0,.35) 55%,
+          rgba(0,0,0,.10) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 100px 0;
+      width: 100%;
+    }
+
+    .hero-content-inner {
+      max-width: 900px;
+    }
+
+    .hero-eyebrow {
+      color: rgba(255,255,255,.72);
+    }
+
+    .hero-title {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(64px, 9vw, 150px);
+      line-height: .84;
+      letter-spacing: -.065em;
+      font-weight: 500;
+      max-width: 1000px;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: #d8d2c6;
+    }
+
+    .hero-description {
+      max-width: 530px;
+      margin: 32px 0;
+      color: rgba(255,255,255,.76);
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-meta {
+      position: absolute;
+      right: 5%;
+      bottom: 50px;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: rgba(255,255,255,.65);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+    }
+
+    /* =========================
+       INTRO
+       ========================= */
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .intro-large {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(42px, 5vw, 75px);
+      line-height: .98;
+      letter-spacing: -.045em;
+    }
+
+    .intro-large em {
+      font-style: italic;
+    }
+
+    .intro-side {
+      max-width: 480px;
+      justify-self: end;
+    }
+
+    .intro-side p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    /* =========================
+       CATEGORIES
+       ========================= */
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-top: 55px;
+    }
+
+    .category-card {
+      min-height: 430px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: var(--black);
+      color: white;
+    }
+
+    .category-card img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .6s ease;
+    }
+
+    .category-card:hover img {
+      transform: scale(1.06);
+    }
+
+    .category-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      padding: 30px;
+      background: linear-gradient(transparent 35%, rgba(0,0,0,.75));
+    }
+
+    .category-overlay h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 40px;
+      font-weight: 500;
+      margin-bottom: 7px;
+    }
+
+    .category-overlay p {
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+    }
+
+    /* =========================
+       SHOP
+       ========================= */
+
+    .shop-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 30px;
+      margin-bottom: 40px;
+    }
+
+    .shop-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .search-box {
+      position: relative;
+    }
+
+    .search-box input {
+      width: 250px;
+      height: 46px;
+      padding: 0 18px 0 42px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      outline: none;
+      font-size: 13px;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .filter-select {
+      height: 46px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: transparent;
+      padding: 0 40px 0 17px;
+      outline: none;
+      font-size: 12px;
+      color: var(--black);
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 35px 18px;
+    }
+
+    .product-card {
+      position: relative;
+      min-width: 0;
+    }
+
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      border-radius: 15px;
+      background: var(--cream-dark);
+      aspect-ratio: 4 / 5;
+      margin-bottom: 17px;
+    }
+
+    .product-image img {
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.045);
+    }
+
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 2;
+      background: var(--white);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .quick-view {
+      position: absolute;
+      left: 15px;
+      right: 15px;
+      bottom: 15px;
+      z-index: 3;
+      border: 0;
+      border-radius: 999px;
+      min-height: 45px;
+      background: rgba(255,255,255,.94);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 800;
+      transform: translateY(10px);
+      opacity: 0;
+      transition: .3s ease;
+    }
+
+    .product-card:hover .quick-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .product-category {
+      color: var(--muted);
+      text-transform: uppercase;
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: .14em;
+    }
+
+    .product-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      line-height: 1.15;
+      margin-top: 4px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-top: 8px;
+    }
+
+    .product-price {
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .add-button {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--black);
+      background: transparent;
+      color: var(--black);
+      border-radius: 50%;
+      font-size: 19px;
+      line-height: 1;
+      transition: .2s;
+    }
+
+    .add-button:hover {
+      background: var(--black);
+      color: white;
+    }
+
+    .no-products {
+      grid-column: 1 / -1;
+      padding: 80px 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    /* =========================
+       WHY NOVA
+       ========================= */
+
+    .why-section {
+      background: var(--black);
+      color: white;
+    }
+
+    .why-section .eyebrow {
+      color: rgba(255,255,255,.55);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      margin-top: 70px;
+      border-top: 1px solid rgba(255,255,255,.15);
+      border-bottom: 1px solid rgba(255,255,255,.15);
+    }
+
+    .why-card {
+      padding: 45px 30px 50px 0;
+      border-right: 1px solid rgba(255,255,255,.15);
+    }
+
+    .why-card:not(:first-child) {
+      padding-left: 30px;
+    }
+
+    .why-card:last-child {
+      border-right: 0;
+    }
+
+    .why-number {
+      font-size: 11px;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 45px;
+    }
+
+    .why-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      font-weight: 500;
+      margin-bottom: 15px;
+    }
+
+    .why-card p {
+      color: rgba(255,255,255,.55);
+      font-size: 14px;
+      max-width: 340px;
+    }
+
+    /* =========================
+       PROMO
+       ========================= */
+
+    .promo {
+      min-height: 600px;
+      position: relative;
+      overflow: hidden;
+      background: var(--black);
+      color: white;
+      border-radius: 24px;
+      margin: 0 20px;
+    }
+
+    .promo-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: .55;
+    }
+
+    .promo-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(0,0,0,.78), rgba(0,0,0,.20));
+    }
+
+    .promo-content {
+      position: relative;
+      z-index: 2;
+      min-height: 600px;
+      padding: 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+    }
+
+    .promo-content h2 {
+      max-width: 800px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(55px, 8vw, 115px);
+      line-height: .85;
+      letter-spacing: -.06em;
+      font-weight: 500;
+    }
+
+    .promo-content p {
+      max-width: 450px;
+      margin: 25px 0;
+      color: rgba(255,255,255,.7);
+    }
+
+    /* =========================
+       ABOUT
+       ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .85fr 1.15fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .about-image {
+      height: 650px;
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .about-content h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(45px, 6vw, 85px);
+      line-height: .92;
+      letter-spacing: -.05em;
+      font-weight: 500;
+      margin-bottom: 30px;
+    }
+
+    .about-content p {
+      max-width: 560px;
+      color: var(--muted);
+      margin-bottom: 18px;
+    }
+
+    /* =========================
+       NEWSLETTER
+       ========================= */
+
+    .newsletter {
+      background: var(--cream-dark);
+    }
+
+    .newsletter-inner {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .newsletter-inner h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(45px, 6vw, 80px);
+      line-height: .95;
+      letter-spacing: -.05em;
+      font-weight: 500;
+    }
+
+    .newsletter-inner p {
+      color: var(--muted);
+      margin: 20px auto 30px;
+      max-width: 500px;
+    }
+
+    .newsletter-form {
+      display: flex;
+      max-width: 550px;
+      margin: auto;
+      padding: 5px;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: none;
+      padding: 0 18px;
+      background: transparent;
+      font-size: 13px;
+    }
+
+    .newsletter-form button {
+      border: 0;
+      background: var(--black);
+      color: white;
+      padding: 13px 23px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* =========================
+       FOOTER
+       ========================= */
+
+    footer {
+      background: var(--black);
+      color: white;
+      padding: 70px 0 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1fr;
+      gap: 50px;
+      padding-bottom: 60px;
+      border-bottom: 1px solid rgba(255,255,255,.14);
+    }
+
+    .footer-brand {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 35px;
+      margin-bottom: 15px;
+    }
+
+    .footer-intro {
+      color: rgba(255,255,255,.5);
+      max-width: 320px;
+      font-size: 13px;
+    }
+
+    .footer-column h4 {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 20px;
+      color: rgba(255,255,255,.45);
+    }
+
+    .footer-column a {
+      display: block;
+      margin-bottom: 11px;
+      font-size: 13px;
+      color: rgba(255,255,255,.75);
+    }
+
+    .footer-column a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      padding-top: 25px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: rgba(255,255,255,.38);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    /* =========================
+       MODAL
+       ========================= */
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 3000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(0,0,0,.65);
+      backdrop-filter: blur(7px);
+    }
+
+    .modal-backdrop.active {
+      display: flex;
+    }
+
+    .modal {
+      position: relative;
+      width: min(980px, 100%);
+      max-height: 92vh;
+      overflow-y: auto;
+      background: var(--cream);
+      border-radius: 22px;
+      box-shadow: 0 30px 100px rgba(0,0,0,.25);
+    }
+
+    .modal-close {
+      position: absolute;
+      right: 18px;
+      top: 18px;
+      z-index: 5;
+      width: 40px;
+      height: 40px;
+      border: 0;
+      background: white;
+      border-radius: 50%;
+      font-size: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,.1);
+    }
+
+    /* Product modal */
+
+    .product-modal-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .product-modal-image {
+      min-height: 650px;
+    }
+
+    .product-modal-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 650px;
+      object-fit: cover;
+      border-radius: 22px 0 0 22px;
+    }
+
+    .product-modal-info {
+      padding: 65px 50px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .modal-category {
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 800;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .modal-product-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 55px;
+      line-height: .95;
+      font-weight: 500;
+      letter-spacing: -.05em;
+      margin: 10px 0 15px;
+    }
+
+    .modal-price {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 30px;
+    }
+
+    .modal-description {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 35px;
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* Checkout */
+
+    .checkout-modal {
+      padding: 45px;
+    }
+
+    .checkout-modal h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      font-weight: 500;
+      letter-spacing: -.04em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .checkout-subtitle {
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-size: 13px;
+    }
+
+    .checkout-layout {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 40px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    .form-group.full {
+      grid-column: 1 / -1;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      font-weight: 800;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      min-height: 48px;
+      border: 1px solid var(--border);
+      background: white;
+      border-radius: 10px;
+      outline: none;
+      padding: 12px 14px;
+      font-size: 13px;
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .payment-options {
+      display: grid;
+      gap: 10px;
+    }
+
+    .payment-option {
+      border: 1px solid var(--border);
+      background: white;
+      padding: 15px;
+      border-radius: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      cursor: pointer;
+      font-size: 12px;
+    }
+
+    .payment-option input {
+      accent-color: var(--black);
+    }
+
+    .order-summary {
+      background: var(--black);
+      color: white;
+      border-radius: 16px;
+      padding: 25px;
+      height: fit-content;
+    }
+
+    .order-summary h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 25px;
+      font-weight: 500;
+      margin-bottom: 25px;
+    }
+
+    .summary-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+      font-size: 12px;
+    }
+
+    .summary-item span:first-child {
+      color: rgba(255,255,255,.6);
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      padding-top: 20px;
+      font-size: 16px;
+      font-weight: 800;
+    }
+
+    .checkout-submit {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    /* Order success */
+
+    .success-modal {
+      padding: 75px 40px;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: var(--black);
+      color: white;
+      margin: 0 auto 25px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 27px;
+    }
+
+    .success-modal h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 55px;
+      font-weight: 500;
+      line-height: 1;
+      letter-spacing: -.04em;
+    }
+
+    .order-number {
+      display: inline-block;
+      background: var(--cream-dark);
+      padding: 10px 18px;
+      border-radius: 999px;
+      margin: 20px 0;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .1em;
+    }
+
+    .success-modal p {
+      max-width: 500px;
+      margin: 0 auto 30px;
+      color: var(--muted);
+    }
+
+    /* =========================
+       CART DRAWER
+       ========================= */
+
+    .cart-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 2500;
+      background: rgba(0,0,0,.45);
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .cart-drawer {
+      position: fixed;
+      z-index: 2600;
+      top: 0;
+      right: 0;
+      width: min(470px, 100%);
+      height: 100vh;
+      background: var(--cream);
+      transform: translateX(100%);
+      transition: .35s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -20px 0 60px rgba(0,0,0,.15);
+    }
+
+    .cart-drawer.active {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-header h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 30px;
+      font-weight: 500;
+    }
+
+    .cart-items {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 25px;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 90px 20px;
+      color: var(--muted);
+    }
+
+    .cart-empty strong {
+      display: block;
+      color: var(--black);
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 28px;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .cart-item-image {
+      width: 80px;
+      height: 100px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .cart-item-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .cart-item-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 17px;
+      line-height: 1.1;
+    }
+
+    .cart-item-price {
+      margin-top: 5px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 15px;
+    }
+
+    .quantity-control {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      overflow: hidden;
+      background: white;
+    }
+
+    .quantity-control button {
+      width: 31px;
+      height: 31px;
+      border: 0;
+      background: transparent;
+    }
+
+    .quantity-control span {
+      min-width: 30px;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .remove-btn {
+      border: 0;
+      background: transparent;
+      color: var(--danger);
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+    }
+
+    .cart-footer {
+      padding: 25px;
+      border-top: 1px solid var(--border);
+      background: var(--cream);
+    }
+
+    .cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
+    }
+
+    .cart-total span:first-child {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+    }
+
+    .cart-total strong {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      font-weight: 500;
+    }
+
+    .checkout-btn {
+      width: 100%;
+    }
+
+    /* =========================
+       TOAST
+       ========================= */
+
+    .toast {
+      position: fixed;
+      right: 25px;
+      bottom: 25px;
+      z-index: 5000;
+      max-width: 340px;
+      padding: 15px 20px;
+      background: var(--black);
+      color: white;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      font-size: 12px;
+      transform: translateY(30px);
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s ease;
+    }
+
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+
+    @media (max-width: 1100px) {
+      .container {
+        width: min(var(--max-width), calc(100% - 50px));
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .hero {
+        min-height: 650px;
+      }
+
+      .intro-grid,
+      .about-grid {
+        gap: 60px;
+      }
+    }
+
+    @media (max-width: 800px) {
+      .container {
+        width: calc(100% - 36px);
+      }
+
+      .section {
+        padding: 75px 0;
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .mobile-menu {
+        display: inline-flex;
+      }
+
+      .brand {
+        font-size: 23px;
+      }
+
+      .hero {
+        min-height: 650px;
+      }
+
+      .hero-content {
+        padding: 75px 0;
+      }
+
+      .hero-meta {
+        display: none;
+      }
+
+      .intro-grid,
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .intro-side {
+        justify-self: start;
+      }
+
+      .category-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .category-card {
+        min-height: 350px;
+      }
+
+      .shop-header {
+        display: block;
+      }
+
+      .shop-tools {
+        margin-top: 25px;
+      }
+
+      .search-box {
+        flex: 1;
+      }
+
+      .search-box input {
+        width: 100%;
+      }
+
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px 12px;
+      }
+
+      .quick-view {
+        opacity: 1;
+        transform: none;
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-card,
+      .why-card:not(:first-child) {
+        padding: 35px 0;
+        border-right: 0;
+        border-bottom: 1px solid rgba(255,255,255,.15);
+      }
+
+      .why-card:last-child {
+        border-bottom: 0;
+      }
+
+      .promo {
+        margin: 0 10px;
+        border-radius: 16px;
+      }
+
+      .promo-content {
+        min-height: 500px;
+        padding: 35px;
+      }
+
+      .about-image {
+        height: 500px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .product-modal-content,
+      .checkout-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .product-modal-image,
+      .product-modal-image img {
+        min-height: 400px;
+        height: 400px;
+      }
+
+      .product-modal-image img {
+        border-radius: 22px 22px 0 0;
+      }
+
+      .product-modal-info {
+        padding: 40px 25px;
+      }
+
+      .modal-product-name {
+        font-size: 42px;
+      }
+
+      .checkout-modal {
+        padding: 35px 22px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .container {
+        width: calc(100% - 26px);
+      }
+
+      .announcement {
+        font-size: 9px;
+      }
+
+      .nav-actions .icon-btn {
+        display: none;
+      }
+
+      .hero {
+        min-height: 600px;
+      }
+
+      .hero-title {
+        font-size: clamp(57px, 17vw, 85px);
+      }
+
+      .hero-description {
+        font-size: 14px;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .product-name {
+        font-size: 17px;
+      }
+
+      .product-image {
+        margin-bottom: 12px;
+      }
+
+      .category-overlay h3 {
+        font-size: 34px;
+      }
+
+      .newsletter-form {
+        border-radius: 14px;
+        display: block;
+        background: transparent;
+        border: 0;
+      }
+
+      .newsletter-form input {
+        width: 100%;
+        height: 50px;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        margin-bottom: 8px;
+      }
+
+      .newsletter-form button {
+        width: 100%;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .footer-bottom {
+        display: block;
+      }
+
+      .footer-bottom span {
+        display: block;
+        margin-bottom: 8px;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-group.full {
+        grid-column: auto;
+      }
+
+      .checkout-modal h2 {
+        font-size: 40px;
+      }
+
+      .success-modal h2 {
+        font-size: 43px;
+      }
+
+      .success-modal {
+        padding: 60px 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================================================
+       ANNOUNCEMENT
+       ========================================================= -->
+
+  <div class="announcement">
+    Free shipping on orders over $100 · 10% off your first order
+  </div>
+
+  <!-- =========================================================
+       HEADER
+       ========================================================= -->
+
+  <header>
+    <div class="container nav">
+
+      <a href="#top" class="brand" id="brandName">
+        NOVA & CO.
+      </a>
+
+      <nav class="nav-links">
+        <a href="#shop">Shop</a>
+        <a href="#categories">Collections</a>
+        <a href="#about">About</a>
+        <a href="#why">Why Nova</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="icon-btn mobile-menu" onclick="scrollToSection('shop')" aria-label="Shop">
+          ☰
+        </button>
+
+        <button class="icon-btn" onclick="scrollToSection('shop')" aria-label="Search">
+          ⌕
+        </button>
+
+        <button class="cart-button" onclick="openCart()">
+          Cart
+          <span class="cart-count" id="cartCount">0</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- =======================================================
+         HERO
+         ======================================================= -->
+
+    <section class="hero">
+
+      <div
+        class="hero-image"
+        id="heroImage"
+      ></div>
+
+      <div class="hero-overlay"></div>
+
+      <div class="container hero-content">
+
+        <div class="hero-content-inner">
+
+          <div class="eyebrow hero-eyebrow">
+            Independent lifestyle store
+          </div>
+
+          <h1 class="hero-title">
+            Everyday.<br>
+            <em>Upgraded.</em>
+          </h1>
+
+          <p class="hero-description" id="heroTagline">
+            Everyday pieces, thoughtfully made.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#shop" class="btn light">
+              Shop collection →
+            </a>
+
+            <a href="#about" class="btn outline" style="color:white;border-color:white;">
+              Discover NOVA
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+      <div class="hero-meta">
+        <span>SS / 2026</span>
+        <span>Made for everyday life</span>
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         INTRO
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="container intro-grid">
+
+        <div>
+          <div class="eyebrow">Our philosophy</div>
+
+          <div class="intro-large">
+            Less noise.<br>
+            More <em>intention.</em>
+          </div>
+        </div>
+
+        <div class="intro-side">
+
+          <p>
+            NOVA & CO. creates considered essentials for people
+            who believe everyday products should feel as good as
+            they look.
+          </p>
+
+          <p>
+            From relaxed wardrobe staples to functional lifestyle
+            pieces, everything is designed around simplicity,
+            versatility and timeless appeal.
+          </p>
+
+          <a href="#shop" class="btn outline">
+            Explore the collection
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         CATEGORIES
+         ======================================================= -->
+
+    <section class="section" id="categories">
+
+      <div class="container">
+
+        <div class="eyebrow">Shop by category</div>
+
+        <h2 class="section-title">
+          Find your everyday essentials.
+        </h2>
+
+        <div class="category-grid">
+
+          <button
+            class="category-card"
+            onclick="setCategory('Clothing')"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?auto=format&fit=crop&w=1200&q=85"
+              alt="Clothing collection"
+            >
+
+            <div class="category-overlay">
+              <div>
+                <h3>Clothing</h3>
+                <p>Relaxed silhouettes · Everyday staples</p>
+              </div>
+            </div>
+          </button>
+
+          <button
+            class="category-card"
+            onclick="setCategory('Accessories')"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1492707892479-7bc8d5a4ee93?auto=format&fit=crop&w=1200&q=85"
+              alt="Accessories collection"
+            >
+
+            <div class="category-overlay">
+              <div>
+                <h3>Accessories</h3>
+                <p>Small details · Strong character</p>
+              </div>
+            </div>
+          </button>
+
+          <button
+            class="category-card"
+            onclick="setCategory('Lifestyle')"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?auto=format&fit=crop&w=1200&q=85"
+              alt="Lifestyle collection"
+            >
+
+            <div class="category-overlay">
+              <div>
+                <h3>Lifestyle</h3>
+                <p>Objects for slower, better days</p>
+              </div>
+            </div>
+          </button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         SHOP
+         ======================================================= -->
+
+    <section class="section" id="shop">
+
+      <div class="container">
+
+        <div class="shop-header">
+
+          <div>
+            <div class="eyebrow">The collection</div>
+
+            <h2 class="section-title">
+              Built for every day.
+            </h2>
+          </div>
+
+          <div class="shop-tools">
+
+            <div class="search-box">
+              <span class="search-icon">⌕</span>
+
+              <input
+                type="search"
+                id="searchInput"
+                placeholder="Search products..."
+                oninput="renderProducts()"
+              >
+            </div>
+
+            <select
+              class="filter-select"
+              id="categoryFilter"
+              onchange="renderProducts()"
+            >
+              <option value="All">All products</option>
+              <option value="Clothing">Clothing</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Lifestyle">Lifestyle</option>
+            </select>
+
+          </div>
+
+        </div>
+
+        <div
+          class="product-grid"
+          id="productGrid"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         WHY NOVA
+         ======================================================= -->
+
+    <section class="section why-section" id="why">
+
+      <div class="container">
+
+        <div class="eyebrow">
+          The NOVA standard
+        </div>
+
+        <h2 class="section-title">
+          Designed with purpose.
+        </h2>
+
+        <div class="why-grid">
+
+          <div class="why-card">
+            <div class="why-number">01</div>
+
+            <h3>Thoughtful Design</h3>
+
+            <p>
+              Every piece is designed to work naturally
+              within your everyday routine.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-number">02</div>
+
+            <h3>Quality First</h3>
+
+            <p>
+              We focus on useful products, considered materials
+              and details that stand up to daily use.
+            </p>
+          </div>
+
+          <div class="why-card">
+            <div class="why-number">03</div>
+
+            <h3>Easy Shopping</h3>
+
+            <p>
+              A simple, transparent shopping experience from
+              discovery to checkout.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         PROMO
+         ======================================================= -->
+
+    <section class="section">
+
+      <div class="promo">
+
+        <div
+          class="promo-image"
+          id="promoImage"
+        ></div>
+
+        <div class="promo-overlay"></div>
+
+        <div class="promo-content">
+
+          <div class="eyebrow" style="color:rgba(255,255,255,.65)">
+            The new everyday
+          </div>
+
+          <h2>
+            YOUR EVERYDAY,<br>
+            UPGRADED.
+          </h2>
+
+          <p>
+            Discover pieces that make getting dressed,
+            working, travelling and living a little simpler.
+          </p>
+
+          <div>
+            <a href="#shop" class="btn light">
+              Shop now →
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         ABOUT
+         ======================================================= -->
+
+    <section class="section" id="about">
+
+      <div class="container about-grid">
+
+        <div class="about-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?auto=format&fit=crop&w=1200&q=85"
+            alt="NOVA workspace"
+          >
+
+        </div>
+
+        <div class="about-content">
+
+          <div class="eyebrow">About NOVA</div>
+
+          <h2>
+            Simple things.<br>
+            Done <em>better.</em>
+          </h2>
+
+          <p>
+            NOVA & CO. is an independent lifestyle concept
+            built around one simple idea: everyday products
+            deserve more thought.
+          </p>
+
+          <p>
+            We curate clothing, accessories and lifestyle
+            objects that balance functionality with clean,
+            timeless design.
+          </p>
+
+          <p>
+            This store is a demonstration e-commerce experience
+            created for educational purposes. Orders and payments
+            are simulated and no real transaction is processed.
+          </p>
+
+          <a href="#shop" class="btn">
+            Shop NOVA
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- =======================================================
+         NEWSLETTER
+         ======================================================= -->
+
+    <section class="section newsletter">
+
+      <div class="container newsletter-inner">
+
+        <div class="eyebrow">
+          Stay in the loop
+        </div>
+
+        <h2>
+          Good things,<br>
+          occasionally.
+        </h2>
+
+        <p>
+          Join the NOVA list for new releases, limited collections
+          and 10% off your first order.
+        </p>
+
+        <form
+          class="newsletter-form"
+          onsubmit="subscribeNewsletter(event)"
+        >
+
+          <input
+            type="email"
+            id="newsletterEmail"
+            placeholder="Your email address"
+            required
+          >
+
+          <button type="submit">
+            Subscribe
+          </button>
+
+        </form>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- =========================================================
+       FOOTER
+       ========================================================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+        <div>
+
+          <div class="footer-brand" id="footerBrand">
+            NOVA & CO.
+          </div>
+
+          <p class="footer-intro">
+            Everyday pieces, thoughtfully made.
+            A modern lifestyle store built around
+            simplicity and intention.
+          </p>
+
+        </div>
+
+        <div class="footer-column">
+
+          <h4>Shop</h4>
+
+          <a href="#shop">All Products</a>
+          <a href="#categories" onclick="setCategory('Clothing')">Clothing</a>
+          <a href="#categories" onclick="setCategory('Accessories')">Accessories</a>
+          <a href="#categories" onclick="setCategory('Lifestyle')">Lifestyle</a>
+
+        </div>
+
+        <div class="footer-column">
+
+          <h4>Company</h4>
+
+          <a href="#about">About</a>
+          <a href="#why">Our Standard</a>
+          <a href="#shop">Collection</a>
+          <a href="#newsletter">Newsletter</a>
+
+        </div>
+
+        <div class="footer-column">
+
+          <h4>Help</h4>
+
+          <a href="javascript:void(0)" onclick="showToast('This is a demo store. Customer support is simulated.')">
+            Contact
+          </a>
+
+          <a href="javascript:void(0)" onclick="showToast('Demo store: shipping information is for presentation purposes.')">
+            Shipping
+          </a>
+
+          <a href="javascript:void(0)" onclick="showToast('Demo store: returns information is for presentation purposes.')">
+            Returns
+          </a>
+
+          <a href="javascript:void(0)" onclick="showToast('Demo store. No real payment is processed.')">
+            Payment
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+
+        <span>
+          © <span id="currentYear"></span> NOVA & CO.
+        </span>
+
+        <span>
+          Demo e-commerce experience
+        </span>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================================================
+       PRODUCT MODAL
+       ========================================================= -->
+
+  <div
+    class="modal-backdrop"
+    id="productModal"
+    onclick="closeModalOnBackdrop(event, 'productModal')"
+  >
+
+    <div class="modal">
+
+      <button
+        class="modal-close"
+        onclick="closeModal('productModal')"
+      >
+        ×
+      </button>
+
+      <div class="product-modal-content">
+
+        <div class="product-modal-image">
+          <img
+            id="modalProductImage"
+            src=""
+            alt=""
+          >
+        </div>
+
+        <div class="product-modal-info">
+
+          <div
+            class="modal-category"
+            id="modalProductCategory"
+          ></div>
+
+          <h2
+            class="modal-product-name"
+            id="modalProductName"
+          ></h2>
+
+          <div
+            class="modal-price"
+            id="modalProductPrice"
+          ></div>
+
+          <p
+            class="modal-description"
+            id="modalProductDescription"
+          ></p>
+
+          <div class="modal-actions">
+
+            <button
+              class="btn"
+              id="modalAddButton"
+            >
+              Add to cart
+            </button>
+
+            <button
+              class="btn outline"
+              onclick="closeModal('productModal')"
+            >
+              Continue shopping
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       CART OVERLAY
+       ========================================================= -->
+
+  <div
+    class="cart-overlay"
+    id="cartOverlay"
+    onclick="closeCart()"
+  ></div>
+
+
+  <!-- =========================================================
+       CART DRAWER
+       ========================================================= -->
+
+  <aside
+    class="cart-drawer"
+    id="cartDrawer"
+  >
+
+    <div class="cart-header">
+
+      <h2>Your cart</h2>
+
+      <button
+        class="icon-btn"
+        onclick="closeCart()"
+      >
+        ×
+      </button>
+
+    </div>
+
+    <div
+      class="cart-items"
+      id="cartItems"
+    ></div>
+
+    <div class="cart-footer">
+
+      <div class="cart-total">
+
+        <span>Subtotal</span>
+
+        <strong id="cartTotal">
+          $0.00
+        </strong>
+
+      </div>
+
+      <button
+        class="btn checkout-btn"
+        onclick="openCheckout()"
+      >
+        Proceed to checkout →
+      </button>
+
+    </div>
+
+  </aside>
+
+
+  <!-- =========================================================
+       CHECKOUT MODAL
+       ========================================================= -->
+
+  <div
+    class="modal-backdrop"
+    id="checkoutModal"
+    onclick="closeModalOnBackdrop(event, 'checkoutModal')"
+  >
+
+    <div class="modal checkout-modal">
+
+      <button
+        class="modal-close"
+        onclick="closeModal('checkoutModal')"
+      >
+        ×
+      </button>
+
+      <h2>Checkout</h2>
+
+      <p class="checkout-subtitle">
+        Complete your details to place this demonstration order.
+      </p>
+
+      <form onsubmit="placeOrder(event)">
+
+        <div class="checkout-layout">
+
+          <div>
+
+            <div class="form-grid">
+
+              <div class="form-group">
+
+                <label for="firstName">
+                  First name
+                </label>
+
+                <input
+                  id="firstName"
+                  name="firstName"
+                  type="text"
+                  required
+                  placeholder="John"
+                >
+
+              </div>
+
+              <div class="form-group">
+
+                <label for="lastName">
+                  Last name
+                </label>
+
+                <input
+                  id="lastName"
+                  name="lastName"
+                  type="text"
+                  required
+                  placeholder="Doe"
+                >
+
+              </div>
+
+              <div class="form-group full">
+
+                <label for="email">
+                  Email
+                </label>
+
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="john@example.com"
+                >
+
+              </div>
+
+              <div class="form-group full">
+
+                <label for="address">
+                  Delivery address
+                </label>
+
+                <input
+                  id="address"
+                  name="address"
+                  type="text"
+                  required
+                  placeholder="123 Example Street"
+                >
+
+              </div>
+
+              <div class="form-group">
+
+                <label for="city">
+                  City
+                </label>
+
+                <input
+                  id="city"
+                  name="city"
+                  type="text"
+                  required
+                  placeholder="Lagos"
+                >
+
+              </div>
+
+              <div class="form-group">
+
+                <label for="country">
+                  Country
+                </label>
+
+                <select
+                  id="country"
+                  name="country"
+                  required
+                >
+                  <option value="">Select country</option>
+                  <option>Nigeria</option>
+                  <option>Ghana</option>
+                  <option>Kenya</option>
+                  <option>South Africa</option>
+                  <option>United Kingdom</option>
+                  <option>United States</option>
+                  <option>Other</option>
+                </select>
+
+              </div>
+
+              <div class="form-group full">
+
+                <label>
+                  Payment method
+                </label>
+
+                <div class="payment-options">
+
+                  <label class="payment-option">
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="Card"
+                      required
+                    >
+                    Credit / Debit Card
+                  </label>
+
+                  <label class="payment-option">
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="Bank Transfer"
+                    >
+                    Bank Transfer
+                  </label>
+
+                  <label class="payment-option">
+                    <input
+                      type="radio"
+                      name="payment"
+                      value="Cash on Delivery"
+                    >
+                    Cash on Delivery
+                  </label>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <div class="order-summary">
+
+            <h3>Order summary</h3>
+
+            <div id="checkoutSummary"></div>
+
+            <div class="summary-total">
+
+              <span>Total</span>
+
+              <span id="checkoutTotal">
+                $0.00
+              </span>
+
+            </div>
+
+            <button
+              type="submit"
+              class="btn light checkout-submit"
+            >
+              Place demonstration order
+            </button>
+
+          </div>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       SUCCESS MODAL
+       ========================================================= -->
+
+  <div
+    class="modal-backdrop"
+    id="successModal"
+  >
+
+    <div class="modal success-modal">
+
+      <div class="success-icon">
+        ✓
+      </div>
+
+      <h2>
+        Order received.
+      </h2>
+
+      <div
+        class="order-number"
+        id="orderNumber"
+      >
+        NOVA-000000
+      </div>
+
+      <p>
+        Thank you for shopping with NOVA & CO.
+        This is a demonstration checkout, so no real
+        payment has been processed.
+      </p>
+
+      <button
+        class="btn"
+        onclick="closeSuccess()"
+      >
+        Continue shopping
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================================================
+       TOAST
+       ========================================================= -->
+
+  <div
+    class="toast"
+    id="toast"
+  ></div>
+
+
+  <!-- =========================================================
+       JAVASCRIPT
+       ========================================================= -->
+
+  <script>
+
+    /* =========================================================
+       STORE CONFIGURATION
+       ---------------------------------------------------------
+       THIS IS THE MAIN AREA YOU CAN EDIT.
+
+       Add/remove products here.
+       Change prices, descriptions, images and categories here.
+       ========================================================= */
+
+    const STORE = {
+
+      name: "NOVA & CO.",
+
+      tagline: "Everyday pieces, thoughtfully made.",
+
+      currency: "$",
+
+      heroImage:
+        "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=2200&q=90",
+
+      promoImage:
+        "https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=2200&q=90",
+
+      categories: [
+        "Clothing",
+        "Accessories",
+        "Lifestyle"
+      ],
+
+      products: [
+
+        {
+          id: 1,
+          name: "Essential Overshirt",
+          price: 78,
+          category: "Clothing",
+          badge: "Bestseller",
+          image:
+            "https://images.unsplash.com/photo-1596755389378-c31d21fd1273?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A relaxed everyday overshirt designed for effortless layering. Clean lines, understated details and an easy silhouette."
+        },
+
+        {
+          id: 2,
+          name: "Studio Tote",
+          price: 42,
+          category: "Accessories",
+          badge: "New",
+          image:
+            "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A versatile everyday tote with enough room for your daily essentials, designed for work, travel and weekends."
+        },
+
+        {
+          id: 3,
+          name: "Minimal Runner",
+          price: 96,
+          category: "Clothing",
+          badge: "Featured",
+          image:
+            "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A minimal everyday sneaker concept with a clean profile and comfortable construction for life on the move."
+        },
+
+        {
+          id: 4,
+          name: "Everyday Cap",
+          price: 28,
+          category: "Accessories",
+          badge: "",
+          image:
+            "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A classic six-panel cap with a clean NOVA finish. Easy to wear, easy to pair and designed for everyday use."
+        },
+
+        {
+          id: 5,
+          name: "Ceramic Travel Mug",
+          price: 24,
+          category: "Lifestyle",
+          badge: "New",
+          image:
+            "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A refined ceramic travel mug designed for morning routines, desk sessions and slow weekend starts."
+        },
+
+        {
+          id: 6,
+          name: "Relaxed Tee",
+          price: 36,
+          category: "Clothing",
+          badge: "",
+          image:
+            "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A soft, relaxed everyday tee built around a timeless silhouette and easy styling."
+        },
+
+        {
+          id: 7,
+          name: "NOVA Notebook",
+          price: 18,
+          category: "Lifestyle",
+          badge: "",
+          image:
+            "https://images.unsplash.com/photo-1531346680769-a1d79b57de5c?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A minimal notebook for ideas, plans, sketches and everything worth remembering."
+        },
+
+        {
+          id: 8,
+          name: "Leather Card Holder",
+          price: 35,
+          category: "Accessories",
+          badge: "",
+          image:
+            "https://images.unsplash.com/photo-1627123424574-724758594e93?auto=format&fit=crop&w=1000&q=85",
+          description:
+            "A compact card holder designed to keep your everyday essentials organised without unnecessary bulk."
+        }
+
+      ]
+
+    };
+
+
+    /* =========================================================
+       CART STATE
+       ========================================================= */
+
+    let cart = [];
+
+
+    /* =========================================================
+       INITIALISE
+       ========================================================= */
+
+    document.addEventListener("DOMContentLoaded", () => {
+
+      document.getElementById("brandName").textContent = STORE.name;
+
+      document.getElementById("footerBrand").textContent = STORE.name;
+
+      document.getElementById("heroTagline").textContent =
+        STORE.tagline;
+
+      document.getElementById("heroImage").style.backgroundImage =
+        `url("${STORE.heroImage}")`;
+
+      document.getElementById("promoImage").style.backgroundImage =
+        `url("${STORE.promoImage}")`;
+
+      document.getElementById("currentYear").textContent =
+        new Date().getFullYear();
+
+      renderProducts();
+
+      updateCart();
+
+    });
+
+
+    /* =========================================================
+       PRODUCT RENDERING
+       ========================================================= */
+
+    function renderProducts() {
+
+      const grid =
+        document.getElementById("productGrid");
+
+      const search =
+        document
+          .getElementById("searchInput")
+          .value
+          .toLowerCase()
+          .trim();
+
+      const category =
+        document
+          .getElementById("categoryFilter")
+          .value;
+
+      const filteredProducts =
+        STORE.products.filter(product => {
+
+          const matchesSearch =
+            product.name
+              .toLowerCase()
+              .includes(search) ||
+            product.category
+              .toLowerCase()
+              .includes(search) ||
+            product.description
+              .toLowerCase()
+              .includes(search);
+
+          const matchesCategory =
+            category === "All" ||
+            product.category === category;
+
+          return matchesSearch && matchesCategory;
+
+        });
+
+
+      if (!filteredProducts.length) {
+
+        grid.innerHTML = `
+          <div class="no-products">
+            <strong>No products found.</strong>
+            <br>
+            Try another search or category.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      grid.innerHTML =
+        filteredProducts.map(product => `
+
+          <article class="product-card">
+
+            <div class="product-image">
+
+              ${product.badge ? `
+                <span class="product-badge">
+                  ${product.badge}
+                </span>
+              ` : ""}
+
+              <img
+                src="${product.image}"
+                alt="${escapeHtml(product.name)}"
+                loading="lazy"
+              >
+
+              <button
+                class="quick-view"
+                onclick="openProduct(${product.id})"
+              >
+                QUICK VIEW
+              </button>
+
+            </div>
+
+            <div class="product-category">
+              ${escapeHtml(product.category)}
+            </div>
+
+            <div class="product-name">
+              ${escapeHtml(product.name)}
+            </div>
+
+            <div class="product-bottom">
+
+              <div class="product-price">
+                ${formatMoney(product.price)}
+              </div>
+
+              <button
+                class="add-button"
+                onclick="addToCart(${product.id})"
+                aria-label="Add ${escapeHtml(product.name)} to cart"
+              >
+                +
+              </button>
+
+            </div>
+
+          </article>
+
+        `).join("");
+
+    }
+
+
+    /* =========================================================
+       CATEGORY FILTER
+       ========================================================= */
+
+    function setCategory(category) {
+
+      document.getElementById("categoryFilter").value =
+        category;
+
+      document.getElementById("searchInput").value =
+        "";
+
+      renderProducts();
+
+      setTimeout(() => {
+        scrollToSection("shop");
+      }, 50);
+
+    }
+
+
+    /* =========================================================
+       PRODUCT MODAL
+       ========================================================= */
+
+    function openProduct(id) {
+
+      const product =
+        STORE.products.find(item => item.id === id);
+
+      if (!product) return;
+
+      document.getElementById("modalProductImage").src =
+        product.image;
+
+      document.getElementById("modalProductImage").alt =
+        product.name;
+
+      document.getElementById("modalProductCategory").textContent =
+        product.category;
+
+      document.getElementById("modalProductName").textContent =
+        product.name;
+
+      document.getElementById("modalProductPrice").textContent =
+        formatMoney(product.price);
+
+      document.getElementById("modalProductDescription").textContent =
+        product.description;
+
+      document.getElementById("modalAddButton").onclick =
+        () => {
+          addToCart(product.id);
+          closeModal("productModal");
+        };
+
+      openModal("productModal");
+
+    }
+
+
+    /* =========================================================
+       CART
+       ========================================================= */
+
+    function addToCart(productId) {
+
+      const product =
+        STORE.products.find(item => item.id === productId);
+
+      if (!product) return;
+
+      const existing =
+        cart.find(item => item.id === productId);
+
+      if (existing) {
+
+        existing.quantity += 1;
+
+      } else {
+
+        cart.push({
+          id: product.id,
+          quantity: 1
+        });
+
+      }
+
+      updateCart();
+
+      showToast(
+        `${product.name} added to your cart.`
+      );
+
+    }
+
+
+    function removeFromCart(productId) {
+
+      cart =
+        cart.filter(item => item.id !== productId);
+
+      updateCart();
+
+    }
+
+
+    function changeQuantity(productId, amount) {
+
+      const item =
+        cart.find(item => item.id === productId);
+
+      if (!item) return;
+
+      item.quantity += amount;
+
+      if (item.quantity <= 0) {
+        removeFromCart(productId);
+        return;
+      }
+
+      updateCart();
+
+    }
+
+
+    function getCartProduct(productId) {
+
+      return STORE.products.find(
+        product => product.id === productId
+      );
+
+    }
+
+
+    function getCartTotal() {
+
+      return cart.reduce((total, item) => {
+
+        const product =
+          getCartProduct(item.id);
+
+        return total +
+          (product.price * item.quantity);
+
+      }, 0);
+
+    }
+
+
+    function getCartCount() {
+
+      return cart.reduce(
+        (total, item) => total + item.quantity,
+        0
+      );
+
+    }
+
+
+    function updateCart() {
+
+      document.getElementById("cartCount").textContent =
+        getCartCount();
+
+      document.getElementById("cartTotal").textContent =
+        formatMoney(getCartTotal());
+
+      const container =
+        document.getElementById("cartItems");
+
+
+      if (!cart.length) {
+
+        container.innerHTML = `
+          <div class="cart-empty">
+            <strong>Your cart is empty.</strong>
+            Discover something you'll love.
+          </div>
+        `;
+
+        return;
+      }
+
+
+      container.innerHTML =
+        cart.map(item => {
+
+          const product =
+            getCartProduct(item.id);
+
+          const itemTotal =
+            product.price * item.quantity;
+
+          return `
+
+            <div class="cart-item">
+
+              <div class="cart-item-image">
+
+                <img
+                  src="${product.image}"
+                  alt="${escapeHtml(product.name)}"
+                >
+
+              </div>
+
+              <div>
+
+                <div class="cart-item-name">
+                  ${escapeHtml(product.name)}
+                </div>
+
+                <div class="cart-item-price">
+                  ${formatMoney(itemTotal)}
+                </div>
+
+                <div class="cart-item-controls">
+
+                  <div class="quantity-control">
+
+                    <button
+                      onclick="changeQuantity(${product.id}, -1)"
+                    >
+                      −
+                    </button>
+
+                    <span>
+                      ${item.quantity}
+                    </span>
+
+                    <button
+                      onclick="changeQuantity(${product.id}, 1)"
+                    >
+                      +
+                    </button>
+
+                  </div>
+
+                  <button
+                    class="remove-btn"
+                    onclick="removeFromCart(${product.id})"
+                  >
+                    Remove
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          `;
+
+        }).join("");
+
+    }
+
+
+    /* =========================================================
+       CART DRAWER
+       ========================================================= */
+
+    function openCart() {
+
+      document
+        .getElementById("cartDrawer")
+        .classList.add("active");
+
+      document
+        .getElementById("cartOverlay")
+        .classList.add("active");
+
+      document.body.classList.add("locked");
+
+    }
+
+
+    function closeCart() {
+
+      document
+        .getElementById("cartDrawer")
+        .classList.remove("active");
+
+      document
+        .getElementById("cartOverlay")
+        .classList.remove("active");
+
+      document.body.classList.remove("locked");
+
+    }
+
+
+    /* =========================================================
+       CHECKOUT
+       ========================================================= */
+
+    function openCheckout() {
+
+      if (!cart.length) {
+
+        showToast(
+          "Your cart is empty."
+        );
+
+        return;
+
+      }
+
+      closeCart();
+
+      renderCheckoutSummary();
+
+      openModal("checkoutModal");
+
+    }
+
+
+    function renderCheckoutSummary() {
+
+      const summary =
+        document.getElementById("checkoutSummary");
+
+      summary.innerHTML =
+        cart.map(item => {
+
+          const product =
+            getCartProduct(item.id);
+
+          return `
+
+            <div class="summary-item">
+
+              <span>
+                ${escapeHtml(product.name)} × ${item.quantity}
+              </span>
+
+              <span>
+                ${formatMoney(product.price * item.quantity)}
+              </span>
+
+            </div>
+
+          `;
+
+        }).join("");
+
+      document.getElementById("checkoutTotal").textContent =
+        formatMoney(getCartTotal());
+
+    }
+
+
+    function placeOrder(event) {
+
+      event.preventDefault();
+
+      if (!cart.length) {
+
+        closeModal("checkoutModal");
+
+        showToast(
+          "Your cart is empty."
+        );
+
+        return;
+
+      }
+
+      const orderNumber =
+        "NOVA-" +
+        Math.floor(
+          100000 +
+          Math.random() * 900000
+        );
+
+      document.getElementById("orderNumber").textContent =
+        orderNumber;
+
+      cart = [];
+
+      updateCart();
+
+      closeModal("checkoutModal");
+
+      openModal("successModal");
+
+    }
+
+
+    function closeSuccess() {
+
+      closeModal("successModal");
+
+      scrollToSection("shop");
+
+    }
+
+
+    /* =========================================================
+       NEWSLETTER
+       ========================================================= */
+
+    function subscribeNewsletter(event) {
+
+      event.preventDefault();
+
+      const email =
+        document
+          .getElementById("newsletterEmail")
+          .value
+          .trim();
+
+      if (!email) return;
+
+      document
+        .getElementById("newsletterEmail")
+        .value = "";
+
+      showToast(
+        "You're subscribed. Welcome to NOVA & CO."
+      );
+
+    }
+
+
+    /* =========================================================
+       MODALS
+       ========================================================= */
+
+    function openModal(id) {
+
+      document
+        .getElementById(id)
+        .classList.add("active");
+
+      document.body.classList.add("locked");
+
+    }
+
+
+    function closeModal(id) {
+
+      document
+        .getElementById(id)
+        .classList.remove("active");
+
+      if (
+        !document.querySelector(
+          ".modal-backdrop.active"
+        )
+      ) {
+        document.body.classList.remove("locked");
+      }
+
+    }
+
+
+    function closeModalOnBackdrop(event, id) {
+
+      if (
+        event.target === event.currentTarget
+      ) {
+        closeModal(id);
+      }
+
+    }
+
+
+    /* =========================================================
+       UTILITIES
+       ========================================================= */
+
+    function formatMoney(amount) {
+
+      return STORE.currency +
+        Number(amount).toFixed(2);
+
+    }
+
+
+    function scrollToSection(id) {
+
+      const element =
+        document.getElementById(id);
+
+      if (!element) return;
+
+      element.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+
+    }
+
+
+    function showToast(message) {
+
+      const toast =
+        document.getElementById("toast");
+
+      toast.textContent =
+        message;
+
+      toast.classList.add("show");
+
+      clearTimeout(
+        window.novaToastTimer
+      );
+
+      window.novaToastTimer =
+        setTimeout(() => {
+
+          toast.classList.remove("show");
+
+        }, 2800);
+
+    }
+
+
+    function escapeHtml(value) {
+
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
+    }
+
+
+    /* =========================================================
+       KEYBOARD SUPPORT
+       ========================================================= */
+
+    document.addEventListener(
+      "keydown",
+      event => {
+
+        if (event.key === "Escape") {
+
+          closeCart();
+
+          document
+            .querySelectorAll(".modal-backdrop.active")
+            .forEach(modal => {
+              modal.classList.remove("active");
+            });
+
+          document.body.classList.remove("locked");
+
+        }
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
